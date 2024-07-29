@@ -190,7 +190,7 @@ c.f. `The Superior man’ (Legge, Wilhem), `Noble young one’ (Hatcher),
     (5 "䷄"
      "Hexagram 5 is named 需 (xū), “Attending”. Other variations include “waiting”, “moistened”, and “arriving”. Its inner (lower) trigram is ☰ (乾 qián) force = (天) heaven, and its outer (upper) trigram is ☵ (坎 kǎn) gorge = (水) water."
      "WAITING. If you are sincere, you have light and success. Perseverance brings good fortune. It furthers one to cross the great water."
-     "Clouds rise up to heaven: The image of WAITING. Thus, you should eats and drink, be joyous and of good cheer."
+     "Clouds rise up to heaven: The image of WAITING. Thus, you should eat and drink, be joyous and of good cheer."
      "HEXAGRAM FOR WAITING")
     (6 "䷅"
      "Hexagram 6 is named 訟 (sòng), “Arguing”. Other variations include “conflict” and “lawsuit”. Its inner (lower) trigram is ☵ (坎 kǎn) gorge = (水) water, and its outer (upper) trigram is ☰ (乾 qián) force = (天) heaven."
@@ -868,7 +868,8 @@ The hexagram can be entered as a string, or by number."
           (pcase hexagram
                  ((pred numberp) hexagram)
                  ((pred i-ching-hexagram-p)
-                  (i-ching-hexagram-to-number hexagram)))))
+                  (i-ching-hexagram-to-number hexagram))
+                 (_ (error "Not a hexagram symbol or number")))))
     (format "%s\n\n%s\n\nJudgment: %s\n\nImage: %s\n\n"
             (i-ching-number-to-hexagram hexagram-number)
             (i-ching-number-to-description hexagram-number)
