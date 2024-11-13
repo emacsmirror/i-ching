@@ -865,16 +865,20 @@ Provided by Randomness and Integrity Services Ltd. via https://www.random.org/"
 The hexagram can be entered as a string, or by number."
   (interactive "sHexagram number? " hexagram)
   (let ((hexagram-number
-          (pcase hexagram
-                 ((pred numberp) hexagram)
-                 ((pred i-ching-hexagram-p)
-                  (i-ching-hexagram-to-number hexagram))
-                 (_ (error "Not a hexagram symbol or number")))))
+          (cond
+            ((i-ching-hexagram-p hexagram)
+             (i-ching-hexagram-to-number hexagram))
+            ((numberp hexagram) hexagram)
+            ((stringp hexagram)
+             (if (numberp (string-to-number hexagram))
+                 (string-to-number hexagram)))
+            (t (error "Not a hexagram symbol or number")))))
     (format "%s\n\n%s\n\nJudgment: %s\n\nImage: %s\n\n"
             (i-ching-number-to-hexagram hexagram-number)
             (i-ching-number-to-description hexagram-number)
             (i-ching-number-to-judgment hexagram-number)
             (i-ching-number-to-image hexagram-number))))
+
 
 ;; querying the I Ching
 

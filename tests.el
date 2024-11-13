@@ -76,7 +76,11 @@
 
 (ert-deftest i-ching-interprets ()
              (should (stringp (i-ching-interpretation 49)))
-             (should-not (seq-empty-p  (i-ching-interpretation 49))))
+             (should (stringp (i-ching-interpretation "23")))
+             (should (stringp (i-ching-interpretation "䷖")))
+             (should-not (seq-empty-p (i-ching-interpretation 49)))
+             (should-not (seq-empty-p (i-ching-interpretation "23")))
+             (should-not (seq-empty-p (i-ching-interpretation "䷖"))))
 
 (ert-deftest i-ching-queries ()
              (should (stringp (i-ching-query-string)))
